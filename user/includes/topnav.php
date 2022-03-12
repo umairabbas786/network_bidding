@@ -8,6 +8,9 @@
                         <div class="serach_field-area d-flex align-items-center"></div>
                         <div class="header_right d-flex justify-content-between align-items-center">
                             <div class="profile_info">
+                                <h3 class="badge badge-warning mr-4 mt-3" style="font-size:15px;">Wallet Balance: ₹ 0<h3>
+                            </div>
+                            <div class="profile_info">
                                 <img src="img/profile.png" alt="#">
                                 <div class="profile_info_iner">
                                     <div class="profile_author_name">

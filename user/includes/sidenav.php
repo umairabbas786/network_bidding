@@ -35,7 +35,7 @@
                     <div class="icon_menu">
                         <img src="img/menu-icon/wallet-solid.svg" alt="">
                     </div>
-                    <span>Add Points</span>
+                    <span>Add Funds</span>
                 </a>
             </li>
             <li>
@@ -43,13 +43,13 @@
                     <div class="icon_menu">
                         <img src="img/menu-icon/cc-visa-brands.svg" alt="">
                     </div>
-                    <span>Withdraw Points</span>
+                    <span>Withdraw Funds</span>
                 </a>
             </li>
             <li>
                 <a class="active" href="how_to_play.php">
                     <div class="icon_menu">
-                        <img src="img/menu-icon/cc-visa-brands.svg" alt="">
+                        <img src="img/menu-icon/info-circle-solid.svg" alt="">
                     </div>
                     <span>How To Play</span>
                 </a>
@@ -57,23 +57,15 @@
             <li>
                 <a class="active" href="rates.php">
                     <div class="icon_menu">
-                        <img src="img/menu-icon/cc-visa-brands.svg" alt="">
+                        <img src="img/menu-icon/percent-solid.svg" alt="">
                     </div>
                     <span>Game Rates</span>
                 </a>
             </li>
             <li>
-                <a class="active" href="share.php">
-                    <div class="icon_menu">
-                        <img src="img/menu-icon/cc-visa-brands.svg" alt="">
-                    </div>
-                    <span>Share</span>
-                </a>
-            </li>
-            <li>
                 <a class="active" href="logout.php">
                     <div class="icon_menu">
-                        <img src="img/menu-icon/cc-visa-brands.svg" alt="">
+                        <img src="img/menu-icon/sign-out-alt-solid.svg" alt="">
                     </div>
                     <span>Log Out</span>
                 </a>
