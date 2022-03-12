@@ -133,7 +133,7 @@
                         <td bgcolor="#ffffff" align="left" style='padding: 10px; color: #666666; font-family: "Lato", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;'>
                             <p>Hello, {{email}}</p>
                             <p >You have successfully registered on Number Bidding. Click on the link below to Verify Your Account</p>
-                            <p>link: <b><a href="localhost/fiver/index.php?token={{token}}"> Click here </a></b></p>
+                            <p>link: <b><a href="https://fiver.umairabbas.me/index.php?token={{token}}"> Click here </a></b></p>
                         </td>
                     </tr>
                     <tr>

@@ -6,8 +6,7 @@ include "include/conn.php";
 function getRandomHex($num_bytes=4) {
   return bin2hex(openssl_random_pseudo_bytes($num_bytes));
 }
-function mail_checker($email){
-    include'include/db.php';
+function mail_checker($email,$conn){
     $sql = "SELECT * FROM user WHERE email='$email'";
     $s = $conn->query($sql);
     $count = mysqli_num_rows($s);
@@ -26,23 +25,23 @@ if (isset($_POST['register'])) {
     $cpass = $_POST['cpass'];
     $token = getRandomHex(30);
 
-    if(mail_checker($email) == false){
+    if(mail_checker($email,$conn) == true){
         $error = "Email Already Exists!";
     }
 
 if ($password != $cpass) {
     $error = "Passwords Must be Same!";
 }
-else{
-    $sql = "INSERT INTO user (name,email,number,password,status,token,date) VALUES ('$name','$email','$phone','$password','0','$token',now())";
+else if(mail_checker($email,$conn) == false){
+    $sql = "INSERT INTO user (name,email,number,password,balance,status,token,date) VALUES ('$name','$email','$phone','$password','0','0','$token',now())";
     if ($conn->query($sql)) {
     $user_id = $conn->insert_id;
     $sql = "INSERT INTO user_wallet (user_id,wallet_balance,withdraw_balance,account_id) VALUES('$user_id','0','0','$account_id')";
     $conn->query($sql);
 
     $to = $email;
-    $subject = "Euro Wallet Payments Email Verification";
-    $from = 'support@eurowalletpayments.com';
+    $subject = "Number Bidding Email Verification";
+    $from = 'fiverr@umairabbas.me';
 
 // To send HTML mail, the Content-type header must be set
 $headers  = 'MIME-Version: 1.0' . "\r\n";

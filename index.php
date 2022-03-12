@@ -7,6 +7,9 @@ $msg2 = "";
 if(isset($_SESSION['logout'])){
   $msg2 = $_SESSION['logout'];
 }
+if(isset($_SESSION['msg'])){
+  $msg2 = $_SESSION['msg'];
+}
 if (isset($_GET['token'])) {
   $token = $_GET['token'];
   $sql = "UPDATE user SET status='1' WHERE token = '$token'";
