@@ -28,8 +28,10 @@ while($row = mysqli_fetch_assoc($r)){
    $check_password = $row['password'];
    $email_veification = $row['status'];
    if ($password!=$check_password) {
+    $msg2 = "";
        $msg = "Please Enter Correct password";
    }else if ($email_veification=='0') {
+        $msg2 = "";
        $msg = "Please Verify your Email";
    }else{
        $_SESSION['user'] = $email;

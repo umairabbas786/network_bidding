@@ -35,26 +35,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php 
+                                        $sql = "select * from rates";
+                                        $r = $conn->query($sql);
+                                        while($row=mysqli_fetch_assoc($r)){
+                                    ?>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>KHANAPARA TEER FR</td>
-                                        <td>From admin</td>
+                                        <th scope="row"><?php echo $row['id'];?></th>
+                                        <td><?php echo $row['name'];?></td>
+                                        <td><?php echo $row['price'];?></td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>KHANAPARA TEER SR</td>
-                                        <td>From Admin</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>SHILLONG TEER FR</td>
-                                        <td>From Admin</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>SHILLONG TEER SR</td>
-                                        <td>From Admin</td>
-                                    </tr>
+                                    <?php }?>
                                 </tbody>
                             </table>
                         </div>

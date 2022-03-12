@@ -2,8 +2,9 @@
 session_start();
 ob_start();
 include "includes/conn.php";
+include "includes/functions.php";
 if(isset($_SESSION['user'])){
-
+    //do nothing..
 }
 else{
     header("location:../index.php");

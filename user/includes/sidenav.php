@@ -1,6 +1,9 @@
+<?php 
+$row = GetUserWithEmail($_SESSION['user'],$conn);
+?>
 <nav class="sidebar vertical-scroll  ps-container ps-theme-default ps-active-y">
         <div class="logo d-flex justify-content-between">
-            <a href="index.html"><h3>Welcome,<br>Full Name</h3></a>
+            <a href="index.html"><h3>Welcome,<br><?php echo $row['name'];?></h3></a>
             <div class="sidebar_close_icon d-lg-none">
                 <i class="ti-close"></i>
             </div>

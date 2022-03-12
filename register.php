@@ -35,9 +35,6 @@ if ($password != $cpass) {
 else if(mail_checker($email,$conn) == false){
     $sql = "INSERT INTO user (name,email,number,password,balance,status,token,date) VALUES ('$name','$email','$phone','$password','0','0','$token',now())";
     if ($conn->query($sql)) {
-    $user_id = $conn->insert_id;
-    $sql = "INSERT INTO user_wallet (user_id,wallet_balance,withdraw_balance,account_id) VALUES('$user_id','0','0','$account_id')";
-    $conn->query($sql);
 
     $to = $email;
     $subject = "Number Bidding Email Verification";

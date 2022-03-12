@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="" class="text-center"><img src="img/whatsapp.png" alt="Whatsapp Button" width="470"
-                        height="110" style="object-fit: cover;"></a>
+                <a href="" class="text-center"><img src="img/whatsapp.png" alt="Whatsapp Button" width="400"
+                        height="110" ></a>
             </div>
             <div class="col-md-6 mt-4">
                 <div class="card">
