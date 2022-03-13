@@ -2,6 +2,9 @@
 <?php include "includes/sidenav.php";?>
 <?php include "includes/topnav.php";?>
 <!--Main Work-->
+
+<?php $row = Settings($conn);?>
+
 <div class="main_content_iner ">
     <div class="container-fluid p-0 ">
         <div class="row ">
@@ -18,7 +21,7 @@
             </div>
             <div class="col-md-12">
                 <div class="alert alert-dark text-center" style="font-size:20px;" role="alert">
-                    Our Number has been updated. You can contact us now on (Number)
+                    Our Number has been updated. You can contact us now on <a href="tel:+<?php echo $row['number'];?>">+<?php echo $row['number'];?></a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -29,13 +32,13 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="" class="text-center"><img src="img/whatsapp.png" alt="Whatsapp Button" width="400"
+                <a href="https://wa.me/<?php echo $row['whatsapp']?>" target="_blank" class="text-center"><img src="img/whatsapp.png" alt="Whatsapp Button" width="400"
                         height="110" ></a>
             </div>
             <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-header">
-                        Open-BIDS-8:30 am | Close-BIDS-3:30 pm
+                        Open-BIDS- <?php echo convert12($row['one_open']);?> | Close-BIDS- <?php echo convert12($row['one_close']);?>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">KHANAPARA - Teer FR (1st ROUND)</h5>
@@ -47,7 +50,7 @@
             <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-header">
-                        Open-BIDS-8:30 am | Close-BIDS-3:30 pm
+                        Open-BIDS- <?php echo convert12($row['two_open']);?> | Close-BIDS- <?php echo convert12($row['two_close']);?>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">KHANAPARA - Teer SR (2nd ROUND)</h5>
@@ -59,7 +62,7 @@
             <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-header">
-                        Open-BIDS-8:30 am | Close-BIDS-3:30 pm
+                        Open-BIDS- <?php echo convert12($row['three_open']);?> | Close-BIDS- <?php echo convert12($row['three_clode']);?>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">SHILLONG - Teer FR (1st ROUND)</h5>
@@ -71,7 +74,7 @@
             <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-header">
-                        Open-BIDS-8:30 am | Close-BIDS-3:30 pm
+                        Open-BIDS- <?php echo convert12($row['four_open']);?> | Close-BIDS- <?php echo convert12($row['four_close']);?>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">SHILLONG - Teer SR (2nd ROUND)</h5>

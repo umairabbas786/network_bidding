@@ -13,6 +13,47 @@
         return $row;
     }
 
+    //time convert
+    function convert12($str){
+	$h1 = $str[0] - '0';
+	$h2 = $str[1] - '0';
+	$hh = $h1 * 10 + $h2;
+	$Meridien;
+	if ($hh < 12)
+	{
+		$Meridien = "AM";
+	}
+	else
+		$Meridien = "PM";
+
+	$hh %= 12;
+	if ($hh == 0)
+	{
+		echo "12";
+		for ($i = 2; $i < 8; ++$i)
+		{
+			echo $str[$i];
+		}
+	}
+	else
+	{
+		echo $hh;
+		for ($i = 2; $i < 8; ++$i)
+		{
+			echo $str[$i];
+		}
+	}
+	echo " " , $Meridien;
+}
+
+    //site settings
+    function Settings($conn){
+        $sql = "select * from setting where id = '1'";
+        $r = $conn->query($sql);
+        $row=mysqli_fetch_assoc($r);
+        return $row;
+    }
+
     //history generate
     function PlayHistory($id,$name,$type,$num,$amount,$conn){
         $sql = "insert into history(user_id,game_name,game_type,bid_on,amount,date) values('$id','$name','$type','$num','$amount',now())";
