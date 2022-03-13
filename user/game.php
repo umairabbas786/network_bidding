@@ -50,14 +50,14 @@
                                         </div>
                                     </div>
                                     </a>
-                                    <a href=".php?id=<?php echo $_GET['id'];?>">
+                                    <a href="housing_play.php?id=<?php echo $_GET['id'];?>">
                                     <div class="single_quick_activity bg-secondary">
                                         <div class="count_content">
                                             <h1>Housing</h1>
                                         </div>
                                     </div>
                                     </a>
-                                    <a href=".php?id=<?php echo $_GET['id'];?>">
+                                    <a href="ending_play.php?id=<?php echo $_GET['id'];?>">
                                     <div class="single_quick_activity bg-secondary">
                                         <div class="count_content">
                                             <h1>Ending</h1>
