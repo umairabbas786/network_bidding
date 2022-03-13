@@ -27,7 +27,7 @@
                     <div class="icon_menu">
                         <img src="img/menu-icon/history-solid.svg" alt="">
                     </div>
-                    <span>Transaction Histroy</span>
+                    <span>Withdraw Requests</span>
                 </a>
             </li>
             <li>

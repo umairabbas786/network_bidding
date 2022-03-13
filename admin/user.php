@@ -40,14 +40,15 @@
                                             $r = $conn->query($sql);
                                             while($row = mysqli_fetch_assoc($r)){
                                         ?>
+                                        
                                         <tr>
                                             <th scope="row"><?php echo $row['id'];?></th>
-                                            <td><?php echo $row['name'];?></td>
-                                            <td><?php echo $row['email'];?></td>
-                                            <td><?php echo $row['number'];?></td>
-                                            <td><?php if($row['status'] == '1'){echo "<h3 href='' style='font-size:14px;' class='badge badge-success'>Verified</h3>";}else{echo "<h3 href='' style='font-size:14px;' class='badge badge-danger'>Not Verified</h3>";}?></td>
-                                            <td>₹ <?php echo $row['balance'];?></td>
-                                            <td><?php echo $row['date'];?></td>
+                                            <td><a href="details.php?id=<?php echo $row['id'];?>"><?php echo $row['name'];?></a></td>
+                                            <td><a href="details.php?id=<?php echo $row['id'];?>"><?php echo $row['email'];?></a></td>
+                                            <td><a href="details.php?id=<?php echo $row['id'];?>"><?php echo $row['number'];?></a></td>
+                                            <td><a href="details.php?id=<?php echo $row['id'];?>"><?php if($row['status'] == '1'){echo "<h3 href='' style='font-size:14px;' class='badge badge-success'>Verified</h3>";}else{echo "<h3 href='' style='font-size:14px;' class='badge badge-danger'>Not Verified</h3>";}?></a></td>
+                                            <td><a href="details.php?id=<?php echo $row['id'];?>">₹ <?php echo $row['balance'];?></a></td>
+                                            <td><a href="details.php?id=<?php echo $row['id'];?>"><?php echo $row['date'];?></a></td>
                                         </tr>
                                         <?php }?>
                                     </tbody>
