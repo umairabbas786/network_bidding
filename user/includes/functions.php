@@ -6,6 +6,28 @@
         $row=mysqli_fetch_assoc($r);
         return $row;
     }
+    function GetUserWithId($id,$conn){
+        $sql = "select * from user where id = '$id'";
+        $r = $conn->query($sql);
+        $row=mysqli_fetch_assoc($r);
+        return $row;
+    }
+
+    //user deposit 
+    function Deposit($id,$amount,$conn){
+        $row = GetUserWithId($id,$conn);
+        $sql = "insert into transaction(user_id,date,amount,type,status) values('$id',now(),'$amount','Add Funds','1')";
+        $r = $conn->query($sql);
+        $amount += $row['balance'];
+        $s = "update user set balance = '$amount' where id = '$id'";
+        $rr = $conn->query($s);
+        if($r && $rr){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     //change User Password
     function ChangePassword($id,$old,$new,$cnew,$conn){

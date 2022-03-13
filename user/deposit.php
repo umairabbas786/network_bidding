@@ -28,11 +28,12 @@
                         <div class="col-md-6">
                             <div class="modal-content cs_modal">
                                 <div class="modal-body">
-                                    <form>
+                                    <form method="POST" action="pay.php">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Enter Amount">
+                                            <input type="text" name="amount" required class="form-control" placeholder="Enter Amount">
                                         </div>
-                                        <a href="#" class="btn btn-info btn-block full_width text-center">Add Request</a>
+                                        <button type="submit" name="deposit" class="btn btn-info btn-block full_width text-center">Add
+                                            Request</button>
                                     </form>
                                 </div>
                             </div>
