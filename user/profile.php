@@ -29,6 +29,32 @@ if(isset($_POST['update_bank'])){
 }
 ?>
 
+<?php 
+    $suc = "";
+    $err = "";
+
+    if(isset($_POST['add_account'])){
+        $id = $row['id'];
+        if(AddAccountDetails($id,$_POST['paytm'],$_POST['phone'],$_POST['google'],$conn) == true){
+            $suc = "Account Details Added";
+        }
+        else{
+            $err = "Unable to add Account Details";
+        }
+    }
+
+    if(isset($_POST['update_account'])){
+        $id = $row['id'];
+    if(UpdateAccountDetails($id,$_POST['paytm'],$_POST['phone'],$_POST['google'],$conn) == true){
+        $suc = "Account Details Updated";
+    }
+    else{
+        $err = "Unable to Update Account Details";
+    }
+    }
+
+?>
+
 
 <div class="main_content_iner ">
     <div class="container-fluid p-0 ">
@@ -124,25 +150,60 @@ if(isset($_POST['update_bank'])){
                         </div>
                         <div class="col-md-6 mt-md-0 mt-2">
                             <div class="modal-content cs_modal">
+                                <?php if(!empty($suc)){?>
+                                <div class="alert alert-success alert-dismissible fade show mb-2" role="alert">
+                                    <?php echo $suc; ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <?php }?>
+                                <?php if(!empty($err)){?>
+                                <div class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
+                                    <?php echo $err; ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <?php }?>
                                 <div class="modal-header justify-content-center bg-primary">
                                     <h5 class="modal-title text_white">Accounts</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
+                                <?php if(CheckAccountDetails($row['id'],$conn) == false){?>
+                                    <form method="POST" action="">
                                         <div class="form-group">
                                         <label for=""><b>PayTm Number</b></label>
-                                            <input type="text" class="form-control" placeholder="Enter PayTm Number">
+                                            <input type="text" name="paytm" class="form-control" placeholder="Enter PayTm Number" required>
                                         </div>
                                         <div class="form-group">
                                         <label for=""><b>Phone Pay Number</b></label>
-                                            <input type="text" class="form-control" placeholder="Enter Phone Pay Number">
+                                            <input type="text" name="phone" class="form-control" placeholder="Enter Phone Pay Number" required>
                                         </div>
                                         <div class="form-group">
                                         <label for=""><b>Google Pay (TEZ)</b></label>
-                                            <input type="text" class="form-control" placeholder="Enter Google Pay(Tez) Number">
+                                            <input type="text" name="google" class="form-control" placeholder="Enter Google Pay(Tez) Number" required>
                                         </div>
-                                        <a href="#" class="btn btn-block btn-info full_width text-center">Add Account Details</a>
+                                        <button type="submit" name="add_account" class="btn btn-block btn-info full_width text-center">Add Account Details</button>
                                     </form>
+                                    <?php }else{?>
+                                        <?php $row2 = GetAccountDetails($row['id'],$conn);?>
+                                        <form method="POST" action="">
+                                        <div class="form-group">
+                                        <label for=""><b>PayTm Number</b></label>
+                                            <input type="text" value="<?php echo $row2['paytm'];?>" name="paytm" class="form-control" placeholder="Enter PayTm Number" required>
+                                        </div>
+                                        <div class="form-group">
+                                        <label for=""><b>Phone Pay Number</b></label>
+                                            <input type="text" value="<?php echo $row2['phone_pay'];?>" name="phone" class="form-control" placeholder="Enter Phone Pay Number" required>
+                                        </div>
+                                        <div class="form-group">
+                                        <label for=""><b>Google Pay (TEZ)</b></label>
+                                            <input type="text" name="google" value="<?php echo $row2['google_pay'];?>" class="form-control" placeholder="Enter Google Pay(Tez) Number" required>
+                                        </div>
+                                        <button type="submit" name="update_account" class="btn btn-block btn-info full_width text-center">Update Account Details</button>
+                                    </form>
+                                    <?php }?>
                                 </div>
                             </div>
                         </div>
