@@ -2,12 +2,12 @@
 session_start();
 ob_start();
 include "includes/conn.php";
-// if(isset($_SESSION['user'])){
-//     //do nothing..
-// }
-// else{
-//     header("location:../index.php");
-// }
+if(isset($_SESSION['admin'])){
+    //do nothing..
+}
+else{
+    header("location:../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="zxx">

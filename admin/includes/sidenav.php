@@ -11,7 +11,7 @@
                     <div class="icon_menu">
                         <img src="img/menu-icon/home-solid.svg" alt="">
                     </div>
-                    <span>Home</span>
+                    <span>Dashboard</span>
                 </a>
             </li>
             <li>
@@ -31,35 +31,19 @@
                 </a>
             </li>
             <li>
-                <a class="active" href="deposit.php">
-                    <div class="icon_menu">
-                        <img src="img/menu-icon/wallet-solid.svg" alt="">
-                    </div>
-                    <span>Add Funds</span>
-                </a>
-            </li>
-            <li>
-                <a class="active" href="withdraw.php">
-                    <div class="icon_menu">
-                        <img src="img/menu-icon/cc-visa-brands.svg" alt="">
-                    </div>
-                    <span>Withdraw Funds</span>
-                </a>
-            </li>
-            <li>
-                <a class="active" href="how_to_play.php">
-                    <div class="icon_menu">
-                        <img src="img/menu-icon/info-circle-solid.svg" alt="">
-                    </div>
-                    <span>How To Play</span>
-                </a>
-            </li>
-            <li>
                 <a class="active" href="rates.php">
                     <div class="icon_menu">
                         <img src="img/menu-icon/percent-solid.svg" alt="">
                     </div>
                     <span>Game Rates</span>
+                </a>
+            </li>
+            <li>
+                <a class="active" href="setting.php">
+                    <div class="icon_menu">
+                        <img src="img/menu-icon/wallet-solid.svg" alt="">
+                    </div>
+                    <span>Settings</span>
                 </a>
             </li>
             <li>
