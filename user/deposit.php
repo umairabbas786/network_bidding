@@ -30,7 +30,7 @@
                                 <div class="modal-body">
                                     <form method="POST" action="pay.php">
                                         <div class="form-group">
-                                            <input type="text" name="amount" required class="form-control" placeholder="Enter Amount">
+                                            <input type="number" name="amount" required class="form-control" placeholder="Enter Amount">
                                         </div>
                                         <button type="submit" name="deposit" class="btn btn-info btn-block full_width text-center">Add
                                             Request</button>

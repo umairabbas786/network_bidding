@@ -29,7 +29,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Amount</th>
                                         <th scope="col">Type</th>
@@ -37,12 +36,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php 
+                                        $row = GetUserWithEmail($_SESSION['user'],$conn);
+                                        $id = $row['id'];
+                                        $sql = "select * from transaction where user_id = '$id'";
+                                        $r = $conn->query($sql);
+                                        if(mysqli_num_rows($r) >=1){
+                                        while($row1 = mysqli_fetch_assoc($r)){
+                                    ?>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Empty</td>
-                                        <td>Empty</td>
-                                        <td>Empty</td>
+                                        <td><?php echo $row1['date'];?></td>
+                                        <td>₹ <?php echo $row1['amount'];?></td>
+                                        <td><?php echo $row1['type'];?></td>
+                                        <td><?php if($row1['status'] == '1'){echo "<p style='font-size:14px;' class='badge badge-success'>Approved</p>";}
+                                        else if($row1['status'] == '0'){echo "<p style='font-size:14px;' class='badge badge-info'>Pending</p>";}
+                                        else if($row1['status'] == '-1'){echo "<p style='font-size:14px;' class='badge badge-danger'>Rejected</p>";}?>
+                                        </td>
                                     </tr>
+                                    <?php }}else{?>
+                                        <td>No Data Found</td>
+                                    <?php }?>
                                 </tbody>
                             </table>
                         </div>

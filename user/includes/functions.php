@@ -16,9 +16,24 @@
     //user deposit 
     function Deposit($id,$amount,$conn){
         $row = GetUserWithId($id,$conn);
-        $sql = "insert into transaction(user_id,date,amount,type,status) values('$id',now(),'$amount','Add Funds','1')";
+        $sql = "insert into transaction(user_id,date,amount,type,status) values('$id',now(),'$amount','Deposit','1')";
         $r = $conn->query($sql);
         $amount += $row['balance'];
+        $s = "update user set balance = '$amount' where id = '$id'";
+        $rr = $conn->query($s);
+        if($r && $rr){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    //user withdraw
+    function Withdraw($id,$amount,$conn){
+        $row = GetUserWithId($id,$conn);
+        $sql = "insert into transaction(user_id,date,amount,type,status) values('$id',now(),'$amount','Withdraw','0')";
+        $r = $conn->query($sql);
+        $amount = $row['balance'] - $amount;
         $s = "update user set balance = '$amount' where id = '$id'";
         $rr = $conn->query($s);
         if($r && $rr){
@@ -74,7 +89,7 @@
     function CheckBankDetails($id,$conn){
         $sql = "select * from bank_detail where user_id = '$id'";
         $r = $conn->query($sql);
-        if(mysqli_num_rows($r) >=1){
+        if(mysqli_num_rows($r) > 0){
             return true;
         }
         else{
