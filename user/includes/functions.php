@@ -13,6 +13,45 @@
         return $row;
     }
 
+    //history generate
+    function PlayHistory($id,$name,$type,$num,$amount,$conn){
+        $sql = "insert into history(user_id,game_name,game_type,bid_on,amount,date) values('$id','$name','$type','$num','$amount',now())";
+        $r = $conn->query($sql);
+        if($r){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    //user wallet functions
+    function CheckBalance($id,$amount,$conn){
+        $sql = "select balance from user where id = '$id'";
+        $r = $conn->query($sql);
+        $row = mysqli_fetch_assoc($r);
+        if($amount <= $row['balance']){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    function DeductBalance($id,$amount,$conn){
+        $sql = "select balance from user where id = '$id'";
+        $r = $conn->query($sql);
+        $row = mysqli_fetch_assoc($r);
+        $new = $row['balance'] - $amount;
+        $s = "update user set balance = '$new' where id = '$id'";
+        $rr = $conn->query($s);
+        if($rr){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //user deposit 
     function Deposit($id,$amount,$conn){
         $row = GetUserWithId($id,$conn);

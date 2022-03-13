@@ -40,7 +40,7 @@
                     <div class="card-body">
                         <h5 class="card-title">KHANAPARA - Teer FR (1st ROUND)</h5>
                         <p class="card-text">Bid is Closed | Bid is Open</p>
-                        <a href="#" class="btn btn-warning float-right mt-2">Play Game</a>
+                        <a href="game.php?id=one" class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <div class="card-body">
                         <h5 class="card-title">KHANAPARA - Teer SR (2nd ROUND)</h5>
                         <p class="card-text">Bid is Closed | Bid is Open</p>
-                        <a href="#" class="btn btn-warning float-right mt-2">Play Game</a>
+                        <a href="game.php?id=two" class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                     <div class="card-body">
                         <h5 class="card-title">SHILLONG - Teer FR (1st ROUND)</h5>
                         <p class="card-text">Bid is Closed | Bid is Open</p>
-                        <a href="#" class="btn btn-warning float-right mt-2">Play Game</a>
+                        <a href="game.php?id=three" class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     <div class="card-body">
                         <h5 class="card-title">SHILLONG - Teer SR (2nd ROUND)</h5>
                         <p class="card-text">Bid is Closed | Bid is Open</p>
-                        <a href="#" class="btn btn-warning float-right mt-2">Play Game</a>
+                        <a href="game.php?id=four" class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>
             </div>
