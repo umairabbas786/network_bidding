@@ -23,6 +23,14 @@
                 </a>
             </li>
             <li>
+                <a class="active" href="history.php">
+                    <div class="icon_menu">
+                        <img src="img/menu-icon/history-solid.svg" alt="">
+                    </div>
+                    <span>Play History</span>
+                </a>
+            </li>
+            <li>
                 <a class="active" href="transaction.php">
                     <div class="icon_menu">
                         <img src="img/menu-icon/history-solid.svg" alt="">
