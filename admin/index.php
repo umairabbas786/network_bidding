@@ -30,11 +30,11 @@
                                             ?>
                                             <div class="single_quick_activity">
                                                 <div class="count_content mt-3">
-                                                    <p>Total Users</p>
+                                                <a href="user.php"><p>Total Users</p></a>
                                                     <h3><span class="counter"><?php echo $count;?></span> </h3>
                                                 </div>
-                                                <a href="#" class="notification_btn"></a>
-                                            </div>
+                                                <a href="#" class="notification_btn">
+                                            </div></a>
                                             <?php 
                                                 $sql = "select count(id) from transaction where type = 'Withdraw'";
                                                 $r = $conn->query($sql);
@@ -43,7 +43,7 @@
                                             ?>
                                             <div class="single_quick_activity">
                                                 <div class="count_content mt-3">
-                                                    <p>Withdraw Requests</p>
+                                                <a href="transaction.php"><p>Withdraw Requests</p></a>
                                                     <h3><span class="counter"><?php echo $count;?></span> </h3>
                                                 </div>
                                                 <a href="#" class="notification_btn yellow_btn"></a>
