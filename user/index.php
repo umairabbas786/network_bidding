@@ -42,7 +42,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">KHANAPARA - Teer FR (1st ROUND)</h5>
-                        <p class="card-text">Bid is Closed | Bid is Open</p>
+                        <p class="card-text">Bid is Closed | Bid is Open </p>
                         <a href="game.php?id=one" class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>

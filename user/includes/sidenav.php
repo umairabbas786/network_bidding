@@ -18,6 +18,14 @@ $row = GetUserWithEmail($_SESSION['user'],$conn);
                 </a>
             </li>
             <li>
+                <a class="active" href="about.php">
+                    <div class="icon_menu">
+                        <img src="img/menu-icon/info-circle-solid.svg" alt="">
+                    </div>
+                    <span>About Us</span>
+                </a>
+            </li>
+            <li>
                 <a class="active" href="history.php">
                     <div class="icon_menu">
                         <img src="img/menu-icon/receipt-solid.svg" alt="">

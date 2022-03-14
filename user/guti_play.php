@@ -29,7 +29,7 @@
                 }
             }
         }else{
-            $error = "You have Unsufficient Balance";
+            $error = "You have Insufficient Balance";
         }
     }
 
