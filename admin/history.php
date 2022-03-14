@@ -21,6 +21,7 @@
                     <div class="white_card_body">
                         <div class="QA_section">
                             <div class="QA_table mb_30">
+                            <a href="exportplay.php" class="btn btn-primary float-right">Save As CSV</a>
                                 <table class="table lms_table_active ">
                                     <thead>
                                         <tr>
