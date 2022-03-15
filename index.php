@@ -14,21 +14,22 @@ if (isset($_GET['token'])) {
   $token = $_GET['token'];
   $sql = "UPDATE user SET status='1' WHERE token = '$token'";
   if($conn->query($sql)) {
-    $msg2 =  "Email Successfully Verified";
+    $msg2 =  "Account Successfully Verified";
   }
  }
  if (isset($_POST['login'])) {
-   if($_POST['email'] == "admin@gmail.com" && $_POST['pass'] == "admin"){
+   if($_POST['email'] == "9101125757" && $_POST['pass'] == "admin"){
      $_SESSION['admin'] = "admin";
      header("location:admin/");
    }
   $email = $_POST['email'];
   $password = $_POST['pass'];
-$sql = "SELECT * FROM user WHERE email='$email'";
+$sql = "SELECT * FROM user WHERE number='$email'";
 $r = $conn->query($sql);
 $count = mysqli_num_rows($r);
 if ($count>=1) {
 while($row = mysqli_fetch_assoc($r)){
+  $eee = $row['email'];
    $check_password = $row['password'];
    $email_veification = $row['status'];
    if ($password!=$check_password) {
@@ -36,9 +37,9 @@ while($row = mysqli_fetch_assoc($r)){
        $msg = "Please Enter Correct password";
    }else if ($email_veification=='0') {
         $msg2 = "";
-       $msg = "Please Verify your Email";
+       $msg = "Please Verify your Account, follow the instructions sent you via SMS";
    }else{
-       $_SESSION['user'] = $email;
+       $_SESSION['user'] = $eee;
        header("Location:user/");
    }
 }
@@ -94,8 +95,8 @@ $msg = "Please Enter Correct Details";
               <?php }?>
               <form action="#" method="post">
                 <div class="form-group first mb-1">
-                  <label for="username">Email</label>
-                  <input type="email" name="email" class="form-control" id="email" required>
+                  <label for="username">Phone Number</label>
+                  <input type="number" name="email" class="form-control" id="email" required>
                 </div>
                 <div class="form-group last mb-4">
                   <label for="password">Password</label>

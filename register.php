@@ -7,7 +7,7 @@ function getRandomHex($num_bytes=4) {
   return bin2hex(openssl_random_pseudo_bytes($num_bytes));
 }
 function mail_checker($email,$conn){
-    $sql = "SELECT * FROM user WHERE email='$email'";
+    $sql = "SELECT * FROM user WHERE number='$email'";
     $s = $conn->query($sql);
     $count = mysqli_num_rows($s);
     if ($count>=1) {
@@ -25,52 +25,61 @@ if (isset($_POST['register'])) {
     $cpass = $_POST['cpass'];
     $token = getRandomHex(30);
 
-    if(mail_checker($email,$conn) == true){
-        $error = "Email Already Exists!";
+    if(mail_checker($phone,$conn) == true){
+        $error = "Number Already Exists!";
     }
 
 if ($password != $cpass) {
     $error = "Passwords Must be Same!";
 }
-else if(mail_checker($email,$conn) == false){
+else if(mail_checker($phone,$conn) == false){
+  $fields = array(
+      "sender_id" => "Number Bidding",
+      // "variables_values" => "Click here to verify your account:  ",
+      "language" => "english",
+      "message" => "You have successfully registered on Number Bidding. Click on the link below to Verify Your Account: https://fiver.umairabbas.me/index.php?token=$token",
+      "route" => "p",
+      "numbers" => "$number",
+      "flash" => "0",
+  );
+  
+  $curl = curl_init();
+  
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://www.fast2sms.com/dev/bulkV2",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_SSL_VERIFYHOST => 0,
+    CURLOPT_SSL_VERIFYPEER => 0,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => json_encode($fields),
+    CURLOPT_HTTPHEADER => array(
+      "authorization: gZzHKm0vLnRr8Jl6NyBIU9YTqhDSjtCsa7OE1oubPd3ceiQwF4lCTNDyReitOFgXoIjQxp9KLG3uZawz",
+      "accept: */*",
+      "cache-control: no-cache",
+      "content-type: application/json"
+    ),
+  ));
+  
+  $response = curl_exec($curl);
+  $err = curl_error($curl);
+  
+  curl_close($curl);
+  
+  if ($err) {
+    $error = $err;
+  } else {
     $sql = "INSERT INTO user (name,email,number,password,balance,status,token,date) VALUES ('$name','$email','$phone','$password','0','0','$token',now())";
     if ($conn->query($sql)) {
-
-    $to = $email;
-    $subject = "Number Bidding Email Verification";
-    $from = 'fiverr@umairabbas.me';
-
-// To send HTML mail, the Content-type header must be set
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-// Create email headers
-$headers .= 'From: '.$from."\r\n".
-    'Reply-To: '.$from."\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-// Compose a simple HTML email message
-$variables = array();
-
-$variables['email'] = $email;
-$variables['token'] = $token;
-
-$template = file_get_contents("mail_template.php");
-
-foreach($variables as $key => $value)
-{
-  $template = str_replace('{{'.$key.'}}', $value, $template);
+        $_SESSION['msg'] = "Check your SMS Inbox To Verify Your Account";
+        header("Location:index.php");
+  } 
+  else{
+    echo $conn->error;
 }
-
-$message =  $template;
- if(mail($to, $subject, $message, $headers)){
-    $_SESSION['msg'] = "Check Your Email To Verify Your Account";
-    header("Location:index.php");
- }
-        
-    }
-    else{
-        echo $conn->error;
     }
 }
 }
@@ -116,23 +125,23 @@ $message =  $template;
               <form method="POST" action="">
                 <div class="form-group first mb-1">
                   <label for="username">Full Name</label>
-                  <input type="text" name="name" class="form-control" id="username">
+                  <input type="text" name="name" class="form-control" id="username" required>
                 </div>
                 <div class="form-group first mb-1">
                   <label for="username">Email</label>
-                  <input type="email" name="email" class="form-control" id="username">
+                  <input type="email" name="email" class="form-control" id="username" required>
                 </div>
                 <div class="form-group last mb-1">
                   <label for="password">Phone Number</label>
-                  <input type="number" name="phone" class="form-control" id="password" required>
+                  <input type="number" name="phone" maxvalue="10" class="form-control" id="password" required>
                 </div>
                 <div class="form-group last mb-1">
                   <label for="password">Password</label>
-                  <input type="password" name="pass" class="form-control" id="password" >
+                  <input type="password" name="pass" class="form-control" id="password" required>
                 </div>
                 <div class="form-group last mb-4">
                   <label for="password">Confirm Password</label>
-                  <input type="password" name="cpass" class="form-control" id="password" >
+                  <input type="password" name="cpass" class="form-control" id="password" required>
                 </div>
                 <div class="d-flex mb-3 align-items-center">
                     <label class="control control--checkbox mb-0"><span class="caption">Accept Terms and Conditions</span>
