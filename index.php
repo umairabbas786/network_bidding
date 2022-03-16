@@ -60,14 +60,14 @@ $msg = "Please Enter Correct Details";
 <body>
   <div class="content">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6">
+      <div class="row mt-n5 mt-md-0 mb-n5">
+        <div class="col-md-6 mt-n5 mt-md-0 ">
           <img src="public/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
         </div>
         <div class="col-md-6 contents">
           <div class="row justify-content-center">
             <div class="col-md-8">
-              <div class="mb-4">
+              <div class="mb-2">
                 <h3>Login</h3>
               </div>
               <?php if(!empty($msg)){?>
@@ -91,17 +91,17 @@ $msg = "Please Enter Correct Details";
                   <label for="username">Phone Number</label>
                   <input type="number" name="email" class="form-control" id="email" required>
                 </div>
-                <div class="form-group last mb-4">
+                <div class="form-group last mb-2">
                   <label for="password">Password</label>
                   <input type="password" name="pass" class="form-control" id="password" required>
                 </div>
 
-                <div class="d-flex mb-5 align-items-center">
+                <div class="d-flex mb-2 align-items-center">
                   <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
                 </div>
                 <input type="submit" value="Log In" name="login" class="btn btn-block btn-primary">
               </form>
-              <a href="register.php" style="text-decoration: none;"><button class="btn btn-block btn-primary mt-2">Register</button></a>
+              <a href="register.php" style="text-decoration: none;"><button class="btn btn-block btn-primary mt-2 mb-n5 pb-n5">Register</button></a>
             </div>
           </div>
         </div>

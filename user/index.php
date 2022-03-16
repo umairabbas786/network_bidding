@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="https://wa.me/<?php echo $row['whatsapp']?>" target="_blank" class="text-center"><img src="img/whatsapp.png" alt="Whatsapp Button" width="400"
-                        height="110" ></a>
+                <center><a href="https://wa.me/<?php echo $row['whatsapp']?>" target="_blank" class="text-center"><img src="img/whatsapp.png" alt="Whatsapp Button" width="300"
+                        height="110" ></a></center>
             </div>
             <div class="col-md-6 mt-4">
                 <div class="card">
