@@ -42,8 +42,21 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">KHANAPARA - Teer FR (1st ROUND)</h5>
-                        <p class="card-text">Bid is Closed | Bid is Open </p>
-                        <a href="game.php?id=one" class="btn btn-warning float-right mt-2">Play Game</a>
+                        <?php 
+                        date_default_timezone_set('Asia/Kolkata');    
+                        $datee = date('h:i:sa');
+                        $timeIn12HourFormat = $datee;
+ 
+                        $dateTime = new DateTime($timeIn12HourFormat);
+                        $date = $dateTime->format('H:i:s');
+                        if($date >= $row['one_open'] && $date <= $row['one_close']){
+                            $a = '1';
+                        ?>
+                        <p class="card-text">Bid is Open </p>
+                        <?php }else{$a = '0';?>
+                            <p class="card-text">Bid is Closed</p>
+                        <?php }?>
+                        <a href="game.php?id=one" <?php if($a == '0'){echo "style='pointer-events: none'";}?> class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>
             </div>
@@ -54,8 +67,21 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">KHANAPARA - Teer SR (2nd ROUND)</h5>
-                        <p class="card-text">Bid is Closed | Bid is Open</p>
-                        <a href="game.php?id=two" class="btn btn-warning float-right mt-2">Play Game</a>
+                        <?php 
+                        date_default_timezone_set('Asia/Kolkata');    
+                        $datee = date('h:i:sa');
+                        $timeIn12HourFormat = $datee;
+ 
+                        $dateTime = new DateTime($timeIn12HourFormat);
+                        $date = $dateTime->format('H:i:s');
+                        if($date >= $row['two_open'] && $date <= $row['two_close']){
+                            $a = '1';
+                        ?>
+                        <p class="card-text">Bid is Open </p>
+                        <?php }else{$a = '0';?>
+                            <p class="card-text">Bid is Closed</p>
+                        <?php }?>
+                        <a href="game.php?id=two" <?php if($a == '0'){echo "style='pointer-events: none'";}?> class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>
             </div>
@@ -66,8 +92,21 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">SHILLONG - Teer FR (1st ROUND)</h5>
-                        <p class="card-text">Bid is Closed | Bid is Open</p>
-                        <a href="game.php?id=three" class="btn btn-warning float-right mt-2">Play Game</a>
+                        <?php 
+                        date_default_timezone_set('Asia/Kolkata');    
+                        $datee = date('h:i:sa');
+                        $timeIn12HourFormat = $datee;
+ 
+                        $dateTime = new DateTime($timeIn12HourFormat);
+                        $date = $dateTime->format('H:i:s');
+                        if($date >= $row['three_open'] && $date <= $row['three_clode']){
+                            $a = '1';
+                        ?>
+                        <p class="card-text">Bid is Open </p>
+                        <?php }else{ $a = '0';?>
+                            <p class="card-text">Bid is Closed</p>
+                        <?php }?>
+                        <a href="game.php?id=three" <?php if($a == '0'){echo "style='pointer-events: none'";}?> class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>
             </div>
@@ -78,8 +117,21 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">SHILLONG - Teer SR (2nd ROUND)</h5>
-                        <p class="card-text">Bid is Closed | Bid is Open</p>
-                        <a href="game.php?id=four" class="btn btn-warning float-right mt-2">Play Game</a>
+                        <?php 
+                        date_default_timezone_set('Asia/Kolkata');    
+                        $datee = date('h:i:sa');
+                        $timeIn12HourFormat = $datee;
+ 
+                        $dateTime = new DateTime($timeIn12HourFormat);
+                        $date = $dateTime->format('H:i:s');
+                        if($date >= $row['four_open'] && $date <= $row['four_close']){
+                            $a = '1';
+                        ?>
+                        <p class="card-text">Bid is Open </p>
+                        <?php }else{$a = '0'?>
+                            <p class="card-text">Bid is Closed</p>
+                        <?php }?>
+                        <a href="game.php?id=four" <?php if($a == '0'){echo "style='pointer-events: none'";}?> class="btn btn-warning float-right mt-2">Play Game</a>
                     </div>
                 </div>
             </div>

@@ -167,7 +167,7 @@ else if(mail_checker($phone,$conn) == false){
                 </div>
                 <div class="form-group last mb-1">
                   <label for="password">Phone Number</label>
-                  <input type="number" name="phone" maxvalue="10" class="form-control" id="password" required>
+                  <input type="number" name="phone" min="10" class="form-control" id="password" required>
                 </div>
                 <div class="form-group last mb-1">
                   <label for="password">Password</label>
