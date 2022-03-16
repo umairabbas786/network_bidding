@@ -10,13 +10,6 @@ if(isset($_SESSION['logout'])){
 if(isset($_SESSION['msg'])){
   $msg2 = $_SESSION['msg'];
 }
-if (isset($_GET['token'])) {
-  $token = $_GET['token'];
-  $sql = "UPDATE user SET status='1' WHERE token = '$token'";
-  if($conn->query($sql)) {
-    $msg2 =  "Account Successfully Verified";
-  }
- }
  if (isset($_POST['login'])) {
    if($_POST['email'] == "9101125757" && $_POST['pass'] == "admin"){
      $_SESSION['admin'] = "admin";

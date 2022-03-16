@@ -23,7 +23,7 @@ if (isset($_POST['register'])) {
     $phone = $_POST['phone'];
     $password = $_POST['pass'];
     $cpass = $_POST['cpass'];
-    $token = getRandomHex(30);
+    $token = mt_rand(1111,9999);
 
     if(mail_checker($phone,$conn) == true){
         $error = "Number Already Exists!";
@@ -35,11 +35,9 @@ if ($password != $cpass) {
 else if(mail_checker($phone,$conn) == false){
   $fields = array(
       "sender_id" => "Number Bidding",
-      // "variables_values" => "Click here to verify your account:  ",
-      "language" => "english",
-      "message" => "You have successfully registered on Number Bidding. Click on the link below to Verify Your Account: https://fiver.umairabbas.me/index.php?token=$token",
-      "route" => "p",
-      "numbers" => "$number",
+      "variables_values" => "Use otp: $token to verify your account.",
+      "route" => "otp",
+      "numbers" => "$phone",
       "flash" => "0",
   );
   
@@ -70,12 +68,14 @@ else if(mail_checker($phone,$conn) == false){
   curl_close($curl);
   
   if ($err) {
-    $error = $err;
+    $error = "Unable to Send OTP, Please try again Later.";
   } else {
     $sql = "INSERT INTO user (name,email,number,password,balance,status,token,date) VALUES ('$name','$email','$phone','$password','0','0','$token',now())";
     if ($conn->query($sql)) {
-        $_SESSION['msg'] = "Check your SMS Inbox To Verify Your Account";
-        header("Location:index.php");
+        $_SESSION['otp'] = $phone;
+        header("location:register.php");
+        //$_SESSION['msg'] = "Enter OTP To Verify Your Account";
+        //header("Location:index.php");
   } 
   else{
     echo $conn->error;
@@ -85,6 +85,30 @@ else if(mail_checker($phone,$conn) == false){
 }
 
 ?>
+
+<?php 
+  if (isset($_POST['otpp'])) {
+    $num = $_SESSION['otp'];
+    $token = $_POST['otp'];
+    $s = "select token from user where number = '$num'";
+    $r = $conn->query($s);
+    $row = mysqli_fetch_assoc($r);
+    if($row['token'] == $token){
+      $sql = "UPDATE user SET status='1' WHERE token = '$token'";
+      if($conn->query($sql)) {
+        $_SESSION['msg'] =  "Account Successfully Verified";
+        unset($_SESSION['otp']);
+        header("location:index.php");
+      }
+    }
+    else{
+      $error = "Please Enter Correct OTP";
+    }
+   }
+
+
+?>
+
 
 
 <!doctype html>
@@ -122,6 +146,16 @@ else if(mail_checker($phone,$conn) == false){
                 </button>
               </div>
               <?php }?>
+              <?php if(isset($_SESSION['otp'])){?>
+                <br><br>
+                <form action="" method="POST">
+                <div class="form-group first mb-1">
+                  <label for="username">Enter OTP</label>
+                  <input type="number" min="4" name="otp" class="form-control" id="username" required>
+                </div><br>
+                <input type="submit" value="Verify OTP" name="otpp" class="btn btn-block btn-primary">
+                </form>
+              <?php }else{?>
               <form method="POST" action="">
                 <div class="form-group first mb-1">
                   <label for="username">Full Name</label>
@@ -149,9 +183,9 @@ else if(mail_checker($phone,$conn) == false){
                     <div class="control__indicator"></div>
                     </label>
                 </div>
-                <div id="recaptcha-container"></div><br>
                 <input type="submit" value="Register" name="register" class="btn btn-block btn-primary">
               </form>
+              <?php }?>
             </div>
           </div>
         </div>
