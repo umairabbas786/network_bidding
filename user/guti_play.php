@@ -19,12 +19,26 @@
             $name = 'SHILLONG - Teer SR';
         }
         $type = 'Guti Play';
-        $id = $row['id']; 
-        $amount = $_POST['amount'];
-        $number = $_POST['number'];
-        if(CheckBalance($id,$amount,$conn) == true){
-            if(DeductBalance($id,$amount,$conn) == true){
-                if(PlayHistory($id,$name,$type,$number,$amount,$conn) == true){
+        $id = $row['id'];
+        $ptr = [];
+        $ptr = $_POST['number'];
+        $nums = [];
+        $x = 0;
+        $sum = 0;
+        foreach ($ptr as $value => $key){
+            if($key != ''){
+                $sum += $key;
+                $nums[$x] = $value;
+                $x++;
+            }
+        }
+        if($sum == 0){
+            $error = "Bid On any of the following number";
+        }
+        $nums = implode(",",$nums);
+        if(CheckBalance($id,$sum,$conn) == true){
+            if(DeductBalance($id,$sum,$conn) == true){
+                if(PlayHistory($id,$name,$type,$nums,$sum,$conn) == true){
                     $success = "bid Placed Successfully";
                 }
             }
@@ -96,7 +110,11 @@
                                     </button>
                                 </div>
                                 <?php }?>
+                                <div class="container text-center">
                                 <form action="" method="POST">
+                                    <div class="col-md-12">
+                                    <div class="row">
+                                        
                                     <?php 
                                         $i = '00';
                                         while($i != '100'){
@@ -110,18 +128,22 @@
                                             if($i == '8'){$i = '08';}
                                             if($i == '9'){$i = '09';}
                                     ?>
+                                    <div class="col-md-2 col-4">
                                     <label class="btn btn-success">
-                                        <input type="radio" value="<?php echo $i?>" name="number"> <?php echo $i;?>
+                                    <?php echo $i;?> <input type="number" class="form-control" placeholder="Enter Amount" name="number[<?php echo $i;?>]">
                                     </label>
+                                        </div>
                                     <?php $i++;}?>
                                     <br>
+                                    </div>
+                                    </div>
                                     <div class="col-md-6 offset-md-3">
                                         <div class="form-group">
-                                            <input type="number" name="amount" required class="form-control my-2" placeholder="Enter Amount You Want to Bid on Selected Number">
-                                            <button type="submit" name="bid" class="btn btn-warning btn-block">Submit</button>
+                                            <button type="submit" onclick="return ('are you sure you want to pay?');" name="bid" class="btn btn-warning btn-block">Submit</button>
                                         </div>
                                     </div>
                                 </form>
+                                </div>
                             </div>
                         </div>
                     </div>
