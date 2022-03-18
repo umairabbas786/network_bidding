@@ -35,7 +35,7 @@
         if($sum == 0){
             $error = "Bid On any of the following number";
         }
-        $nums = implode(",",$nums);
+        $nums = implode(", ",$nums);
         if(CheckBalance($id,$sum,$conn) == true){
             if(DeductBalance($id,$sum,$conn) == true){
                 if(PlayHistory($id,$name,$type,$nums,$sum,$conn) == true){
