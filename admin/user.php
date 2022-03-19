@@ -2,6 +2,27 @@
 <?php include "includes/sidenav.php";?>
 <?php include "includes/topnav.php";?>
 <!--Main Work-->
+
+<?php 
+    if(isset($_POST['add'])){
+        $id = $_POST['id'];
+        $amount = $_POST['amount'];
+        $sql = "select balance from user where id = '$id'";
+        $r = $conn->query($sql);
+        $row = mysqli_fetch_assoc($r);
+        $old = $row['balance'];
+        $new = $old + $amount;
+        $s = "update user set balance = '$new' where id = '$id'";
+        if($conn->query($s)){
+            $success = "Balance Added";
+        }
+        else{
+            $danger = "Unable to add balance";
+        }
+    }
+
+?>
+
 <div class="main_content_iner ">
     <div class="container-fluid p-0 ">
         <div class="row ">
@@ -18,6 +39,22 @@
             </div>
             <div class="col-md-12">
                 <div class="white_card card_height_100 mb_30">
+                <?php if(!empty($success)){?>
+                                <div class="alert text-center alert-success alert-dismissible fade show mb-2" role="alert">
+                                    <?php echo $success; ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <?php }?>
+                                <?php if(!empty($error)){?>
+                                <div class="alert text-center alert-danger alert-dismissible fade show mb-2" role="alert">
+                                    <?php echo $error; ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <?php }?>
                     <div class="white_card_body">
                         <div class="QA_section">
                             <div class="QA_table mb_30">
@@ -31,6 +68,7 @@
                                             <th scope="col">Phone Number</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Balance</th>
+                                            <th scope="col">Add Funds</th>
                                             <th scope="col">Date</th>
                                         </tr>
                                     </thead>
@@ -48,6 +86,13 @@
                                             <td><a href="details.php?id=<?php echo $row['id'];?>"><?php echo $row['number'];?></a></td>
                                             <td><a href="details.php?id=<?php echo $row['id'];?>"><?php if($row['status'] == '1'){echo "<h3 href='' style='font-size:14px;' class='badge badge-success'>Verified</h3>";}else{echo "<h3 href='' style='font-size:14px;' class='badge badge-danger'>Not Verified</h3>";}?></a></td>
                                             <td><a href="details.php?id=<?php echo $row['id'];?>">₹ <?php echo $row['balance'];?></a></td>
+                                            <td>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+                                                    <input type="number" class="form-control" name="amount" id="" placeholder="Enter Amount" required>
+                                                    <button type="submit" name="add" class="mt-2 btn btn-block btn-success">Add Funds</button>
+                                                </form>
+                                            </td>
                                             <td><a href="details.php?id=<?php echo $row['id'];?>"><?php echo $row['date'];?></a></td>
                                         </tr>
                                         <?php }?>
