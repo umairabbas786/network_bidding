@@ -28,7 +28,7 @@
         foreach ($ptr as $value => $key){
             if($key != ''){
                 $sum += $key;
-                $nums[$x] = $value;
+                $nums[$x] = $value .' = ₹'. $key;
                 $x++;
             }
         }
@@ -128,8 +128,8 @@
                                             if($i == '8'){$i = '08';}
                                             if($i == '9'){$i = '09';}
                                     ?>
-                                    <div class="col-md-2 col-4">
-                                    <label class="btn btn-success">
+                                    <div class="col-lg-2 col-3">
+                                    <label class="btn btn-success p-0">
                                     <?php echo $i;?> <input type="number" class="form-control" placeholder="Enter Amount" name="number[<?php echo $i;?>]">
                                     </label>
                                         </div>
