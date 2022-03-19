@@ -2,6 +2,8 @@
 session_start();
 ob_start(); 
 include "include/conn.php";
+unset($_SESSION['reset']);
+unset($_SESSION['newpass']);
 $msg = "";
 $msg2 = "";
 if(isset($_SESSION['logout'])){

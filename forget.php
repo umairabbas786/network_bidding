@@ -10,13 +10,92 @@ if (isset($_POST['reset'])) {
     $r = $conn->query($sql);
     $count = mysqli_num_rows($r);
     if ($count>=1) {
-        $_SESSION['reset'] = '1';
-        $msg2 = "Verify that its you!";
+      $token = mt_rand(1111,9999);
+      $fields = array(
+        "sender_id" => "Number Bidding",
+        "variables_values" => "Use otp: $token to verify your account.",
+        "route" => "otp",
+        "numbers" => "$phone",
+        "flash" => "0",
+    );
+    
+    $curl = curl_init();
+    
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://www.fast2sms.com/dev/bulkV2",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_SSL_VERIFYHOST => 0,
+      CURLOPT_SSL_VERIFYPEER => 0,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => json_encode($fields),
+      CURLOPT_HTTPHEADER => array(
+        "authorization: gZzHKm0vLnRr8Jl6NyBIU9YTqhDSjtCsa7OE1oubPd3ceiQwF4lCTNDyReitOFgXoIjQxp9KLG3uZawz",
+        "accept: */*",
+        "cache-control: no-cache",
+        "content-type: application/json"
+      ),
+    ));
+    
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    
+    curl_close($curl);
+    
+    if ($err) {
+      $msg = "Unable to Send OTP, Please try again Later.";
+    } else {
+        $s = "update user set token = '$token' where number = '$phone'";
+        if($conn->query($s)){
+          $_SESSION['reset'] = '1';
+          $_SESSION['phone'] = $phone;
+          $msg2 = "Verify that its you!";
+        }
+        else{
+          $msg = "Server issue, Try Again Later";
+        }
     }
+  }
     else{
         $msg = "Please Enter Correct Information";
     }
 }
+
+if(isset($_POST['otp'])){
+  $phone = $_POST['phone'];
+  $otp = $_POST['ootp'];
+  $sql = "select token from user where number = '$phone'";
+  $r = $conn->query($sql);
+  $row = mysqli_fetch_assoc($r);
+  $token = $row['token'];
+  if($token == $otp){
+    $_SESSION['newpass'] = '1';
+  }
+  else{
+    $msg = "Please Enter Correct Otp";
+  }
+
+}
+
+if(isset($_POST['resetpass'])){
+  $phone = $_POST['phone'];
+  $pass = $_POST['passs'];
+  $newpass = $_POST['passss'];
+  if($pass == $newpass){
+    $sql = "update user set password = '$pass' where number = '$phone'";
+    if($conn->query($sql)){
+      $_SESSION['msg'] = "Password Changed";
+      header("location:index.php");
+    }
+  }
+  else{
+    $msg = "Both Passwords must be same";
+  }
+}
+
 ?>
 
 <!doctype html>
@@ -62,11 +141,25 @@ if (isset($_POST['reset'])) {
                 </button>
               </div>
               <?php }?>
-              <?php if(isset($_SESSION['reset'])){?>
+              <?php if(isset($_SESSION['newpass'])){?>
                 <form action="" method="POST">
+                  <input type="hidden" name="phone" value="<?php echo $_SESSION['phone'];?>">
+                    <div class="form-group first mb-3">
+                        <label for="username">New Password</label>
+                        <input type="password" name="passs" class="form-control" required>
+                    </div>
+                    <div class="form-group first mb-3">
+                        <label for="username">Retype New Password</label>
+                        <input type="password" name="passss" class="form-control" required>
+                    </div>
+                    <input type="submit" value="Reset Password" name="resetpass" class="btn btn-block btn-primary">
+                </form>
+              <?php }else if(isset($_SESSION['reset'])){?>
+                <form action="" method="POST">
+                  <input type="hidden" name="phone" value="<?php echo $_SESSION['phone'];?>">
                     <div class="form-group first mb-3">
                         <label for="username">Verify Otp</label>
-                        <input type="number" name="otp" class="form-control" required>
+                        <input type="number" name="ootp" class="form-control" required>
                     </div>
                     <input type="submit" value="Submit Otp" name="otp" class="btn btn-block btn-primary">
                 </form>
