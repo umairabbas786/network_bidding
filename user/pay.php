@@ -8,8 +8,8 @@
 
     use Razorpay\Api\Api;
     if(isset($_POST['deposit'])){
-    $keyId = 'rzp_test_BBjPCY2sL45akM';
-    $secretKey = 'RxkTmTQuj1aGCO28tfe6L4Fo';
+    $keyId = 'rzp_live_jGqIOklM1hq6ZE';
+    $secretKey = 'yvC1TbGxkzXlE8HiKNLsVdsw';
     $api = new Api($keyId,$secretKey);
 
     $row = GetUserWithEmail($_SESSION['user'],$conn);
