@@ -35,7 +35,7 @@ while($row = mysqli_fetch_assoc($r)){
        $msg = "Please Verify your Account, follow the instructions sent you via SMS";
    }else{
     setcookie ("email",$_POST["email"],time()+ (10 * 365 * 24 * 60 * 60));
-       $_SESSION['user'] = $eee;
+       $_SESSION['user'] = $email;
        header("Location:user/");
    }
 }
